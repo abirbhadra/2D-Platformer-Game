@@ -141,12 +141,12 @@ PrefabInstance:
     - target: {fileID: 4434469173272312909, guid: dceccdb09e6158e4cadc01a2f63da82d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.97972333
       objectReference: {fileID: 0}
     - target: {fileID: 4434469173272312909, guid: dceccdb09e6158e4cadc01a2f63da82d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.032
       objectReference: {fileID: 0}
     - target: {fileID: 4434469173272312909, guid: dceccdb09e6158e4cadc01a2f63da82d,
         type: 3}
@@ -240,7 +240,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &151204583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013390183, y: 1.0049059}
+  m_Offset: {x: -0.011608273, y: 1.0175908}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.42, y: 0.1}
@@ -278,7 +278,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.66159403, y: 2.2005138}
+  m_Size: {x: 0.6388498, y: 2.1244059}
   m_EdgeRadius: 0
 --- !u!1 &674629108
 GameObject:
