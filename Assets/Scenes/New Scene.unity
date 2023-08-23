@@ -254,6 +254,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 151204581}
+  run: 0
+  crouch: 0
+  jump: 0
+  speed: 4
 --- !u!61 &151204585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,8 +443,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261620030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.6477542, y: 0.89750654, z: 1}
+  m_LocalPosition: {x: 0.114, y: -2.5, z: 0}
+  m_LocalScale: {x: 14.987953, y: 0.89750654, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
