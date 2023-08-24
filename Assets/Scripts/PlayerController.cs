@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField] private Animator animator;
+    [SerializeField]private Animator animator;
 
     [SerializeField] private bool run;
     [SerializeField] private bool crouch;
-    [SerializeField] private bool jump;
     [SerializeField] private float speed;
+    [SerializeField] private float jump;
+    [SerializeField] private Rigidbody2D rb2d;
     public void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        PlayMovementAnimations(horizontal);
-        MoveCharacter(horizontal);
+        float vertical = Input.GetAxis("Jump");
+        PlayMovementAnimations(horizontal, vertical);
+        MoveCharacter(horizontal, vertical);
 
     }
 
-    private void MoveCharacter(float horizontal) // character movement
+    private void MoveCharacter(float horizontal, float vertical) // character movement
     {
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
+
+        if(vertical>0)
+        {
+            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+        }
     }
 
-    private void PlayMovementAnimations(float horizontal)
+    private void PlayMovementAnimations(float horizontal, float vertical)
     {
         animator.SetFloat("Speed",Mathf.Abs(horizontal));
 
@@ -53,12 +59,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftControl))
             crouch = false;
 
-        animator.SetBool("Jump", jump);//Crouch Animation
+        /* animator.SetBool("Jump", jump);//jump Animation
         if (Input.GetKeyDown(KeyCode.Space))
             jump = true;
         if (Input.GetKeyUp(KeyCode.Space))
-            jump = false;
-                   
+            jump = false; */
+
+        if(vertical>0)
+        {
+            animator.SetBool("Jump", true);
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+        }
     }
 
 }
