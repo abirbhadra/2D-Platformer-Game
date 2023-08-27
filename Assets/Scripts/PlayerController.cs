@@ -11,13 +11,34 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jump;
     [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private bool isGrounded = false;
+    public bool IsShiftPressed;
+
+    private void Awake()
+    {
+        Debug.Log("Player controller awake");
+    }
+    private void Start()
+    {
+        animator = gameObject.GetComponent<Animator>();
+      
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            Debug.Log("Player Grounded");
+        }
+
+    }
     public void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxis("Jump");
         PlayMovementAnimations(horizontal, vertical);
         MoveCharacter(horizontal, vertical);
-
+        IsShiftPressed = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void MoveCharacter(float horizontal, float vertical) // character movement
@@ -26,9 +47,16 @@ public class PlayerController : MonoBehaviour
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
 
-        if(vertical>0)
+        if (vertical > 0 && isGrounded && IsShiftPressed )
         {
-            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+            isGrounded = false;
+            Debug.Log(" Player is Jump");
+            rb2d.AddForce(new Vector2(0f, 1.8f *jump), ForceMode2D.Impulse);   
+        }
+        else if(vertical > 0 && isGrounded)
+        {
+            isGrounded = false;
+            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
         }
     }
 
@@ -48,10 +76,14 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scale; // here transforming the scale with new scale value we got
 
         animator.SetBool("Run", run);//Run animation
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (IsShiftPressed)
+        {
             run = true;
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        }
+        else
+        {
             run = false;
+        }
 
         animator.SetBool("Crouch", crouch);//Crouch Animation
         if (Input.GetKeyDown(KeyCode.LeftControl))
