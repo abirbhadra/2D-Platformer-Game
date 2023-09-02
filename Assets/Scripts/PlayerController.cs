@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jump;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private bool isGrounded = false;
-    public bool IsShiftPressed;
+    [SerializeField] public bool IsShiftPressed;
+    [SerializeField] public float destroyThreshold = -8f;
 
     private void Awake()
     {
@@ -39,8 +40,18 @@ public class PlayerController : MonoBehaviour
         PlayMovementAnimations(horizontal, vertical);
         MoveCharacter(horizontal, vertical);
         IsShiftPressed = Input.GetKey(KeyCode.LeftShift);
+
+        PlayerDeath();
     }
 
+    private void PlayerDeath()
+    {
+        if (transform.position.y <= destroyThreshold)
+        {
+            // Destroy the GameObject
+            Destroy(gameObject);
+        }
+    }
     private void MoveCharacter(float horizontal, float vertical) // character movement
     {
         Vector3 position = transform.position;

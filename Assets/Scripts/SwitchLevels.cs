@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SwitchLevels : MonoBehaviour
 {
-    public int sceneBuildIndex;
+    public int sceneBuildIndex ;
 
     // Level move zoned enter, if collider is a player
     // Move game to another scene
