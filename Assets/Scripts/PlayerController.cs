@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jump;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private bool isGrounded = false;
+
+    public ScoreController scoreController;
+    public void PickupKey()
+    {
+        Debug.Log("Player Picked up KEY");
+        scoreController.IncreaseScore(10);
+    }
+
     [SerializeField] public bool IsShiftPressed;
     [SerializeField] public float destroyThreshold = -8f;
 
@@ -36,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxis("Jump");
+        float vertical = Input.GetAxisRaw("Jump");
         PlayMovementAnimations(horizontal, vertical);
         MoveCharacter(horizontal, vertical);
         IsShiftPressed = Input.GetKey(KeyCode.LeftShift);
@@ -62,7 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
             Debug.Log(" Player is Jump");
-            rb2d.AddForce(new Vector2(0f, 1.8f *jump), ForceMode2D.Impulse);   
+            rb2d.AddForce(new Vector2(0f, 2f *jump), ForceMode2D.Impulse);   
         }
         else if(vertical > 0 && isGrounded)
         {
