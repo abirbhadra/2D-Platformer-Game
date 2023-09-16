@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,16 +16,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private bool isGrounded = false;
 
+   
+
+    [SerializeField] public bool IsShiftPressed;
+    [SerializeField] public float destroyThreshold = -8f;
+
+    public void KillPlayer()
+    {
+        Debug.Log("Player got killed");
+        StartCoroutine(ReloadSceneAfterDelay(0.55f));
+
+    }
+
     public ScoreController scoreController;
     public void PickupKey()
     {
         Debug.Log("Player Picked up KEY");
         scoreController.IncreaseScore(10);
     }
-
-    [SerializeField] public bool IsShiftPressed;
-    [SerializeField] public float destroyThreshold = -8f;
-
     private void Awake()
     {
         Debug.Log("Player controller awake");
@@ -57,9 +67,21 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y <= destroyThreshold)
         {
-            // Destroy the GameObject
-            Destroy(gameObject);
+            
+                StartCoroutine(ReloadSceneAfterDelay(0.5f)); // Start the coroutine with a 0.5-second delay
+            
         }
+    }
+    IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        // Set "Death" to true, triggering the death animation
+        animator.SetBool("Death", true);
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Load the scene after the delay
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void MoveCharacter(float horizontal, float vertical) // character movement
     {
