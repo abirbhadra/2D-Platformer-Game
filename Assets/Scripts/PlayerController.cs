@@ -23,8 +23,12 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer()
     {
-        Debug.Log("Player got killed");
-        StartCoroutine(ReloadSceneAfterDelay(0.55f));
+        PlayerHealthManager.health--;
+        if(PlayerHealthManager.health <=0)
+        {
+            Debug.Log("Player got killed");
+            StartCoroutine(ReloadSceneAfterDelay(0.55f));
+        }     
 
     }
 
@@ -148,5 +152,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jump", false);
         }
     }
+
+
 
 }
