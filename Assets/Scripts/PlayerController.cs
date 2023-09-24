@@ -15,19 +15,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jump;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private bool isGrounded = false;
-
-   
-
     [SerializeField] public bool IsShiftPressed;
     [SerializeField] public float destroyThreshold = -8f;
 
+    public GameOverController gameOverController;
     public void KillPlayer()
     {
         PlayerHealthManager.health--;
         if(PlayerHealthManager.health <=0)
         {
             Debug.Log("Player got killed");
-            StartCoroutine(ReloadSceneAfterDelay(0.55f));
+
+            gameOverController.playerDied();
+
+            this.enabled = false;
         }     
 
     }
@@ -71,12 +72,13 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y <= destroyThreshold)
         {
-            
-                StartCoroutine(ReloadSceneAfterDelay(0.5f)); // Start the coroutine with a 0.5-second delay
-            
+            gameOverController.playerDied();
+          
+
+
         }
     }
-    IEnumerator ReloadSceneAfterDelay(float delay)
+   /* IEnumerator ReloadSceneAfterDelay(float delay)
     {
         // Set "Death" to true, triggering the death animation
         animator.SetBool("Death", true);
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         // Load the scene after the delay
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    } */
     private void MoveCharacter(float horizontal, float vertical) // character movement
     {
         Vector3 position = transform.position;
