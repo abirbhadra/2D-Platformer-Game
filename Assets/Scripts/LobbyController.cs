@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public class LobbyController : MonoBehaviour
 {
     public Button buttonPlay;
-    public string Scene;
+    public GameObject LevelSelection;
 
-    public Button buttonRestart;
     private void Awake()
     {
         buttonPlay.onClick.AddListener(ReloadLevel);
@@ -17,7 +13,7 @@ public class LobbyController : MonoBehaviour
     public void ReloadLevel()
     {
 
-            SceneManager.LoadScene(1);
+        LevelSelection.SetActive(true);
         
     }
 }

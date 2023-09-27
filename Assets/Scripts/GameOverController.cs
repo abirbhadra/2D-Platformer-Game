@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class GameOverController : MonoBehaviour
 {
     public Button buttonRestart;
+    public Button buttonLobby;
     private void Awake()
     {
         buttonRestart.onClick.AddListener(ReloadLevel);
+        buttonLobby.onClick.AddListener(LoadLobby);
     }
     public void playerDied()
     {
@@ -17,8 +19,13 @@ public class GameOverController : MonoBehaviour
     }
     public void ReloadLevel()
     {
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void LoadLobby()
+    {
+        SceneManager.LoadScene(0);
+    }
+        
 
 }
