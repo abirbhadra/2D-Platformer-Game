@@ -10,8 +10,14 @@ public class GameOverController : MonoBehaviour
     public Button buttonLobby;
     private void Awake()
     {
-        buttonRestart.onClick.AddListener(ReloadLevel);
-        buttonLobby.onClick.AddListener(LoadLobby);
+        if (buttonRestart != null)
+        {
+            buttonRestart.onClick.AddListener(ReloadLevel);
+        }
+        if (buttonLobby != null)
+        {
+            buttonLobby.onClick.AddListener(LoadLobby);
+        }
     }
     public void playerDied()
     {
