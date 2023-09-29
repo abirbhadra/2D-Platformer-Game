@@ -8,6 +8,7 @@ public class SwitchLevels : MonoBehaviour
     [SerializeField]
     private bool isChecked = false;
 
+    public GameOverController levelOverController;
     // Level move zoned enter, if collider is a player
     // Move game to another scene
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,8 +19,10 @@ public class SwitchLevels : MonoBehaviour
         {
             isChecked = true;
             LevelManager.Instance.MarkCurrentLevelComplete();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-          
+
+            levelOverController.playerHitTeleporter();
+
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

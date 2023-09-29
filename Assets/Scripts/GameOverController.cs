@@ -8,6 +8,7 @@ public class GameOverController : MonoBehaviour
 {
     public Button buttonRestart;
     public Button buttonLobby;
+    public Button buttonNextLevel;
     private void Awake()
     {
         if (buttonRestart != null)
@@ -18,11 +19,22 @@ public class GameOverController : MonoBehaviour
         {
             buttonLobby.onClick.AddListener(LoadLobby);
         }
+        if(buttonNextLevel != null)
+        {
+            buttonNextLevel.onClick.AddListener(LoadNextLevel);
+        }
     }
     public void playerDied()
     {
         gameObject.SetActive(true);
     }
+
+    public void playerHitTeleporter()
+    {
+        gameObject.SetActive(true);
+    }
+
+
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -31,6 +43,11 @@ public class GameOverController : MonoBehaviour
     public void LoadLobby()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
         
 
