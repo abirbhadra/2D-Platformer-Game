@@ -17,19 +17,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded = false;
     [SerializeField] public bool IsShiftPressed;
     [SerializeField] public float destroyThreshold = -8f;
+    
 
     public GameOverController gameOverController;
+    public PlayerHealthManager playerHealthManager;
     public void KillPlayer()
     {
-        PlayerHealthManager.health--;
-        if(PlayerHealthManager.health <=0)
-        {
-            Debug.Log("Player got killed");
-
-            gameOverController.playerDied();
-
-            this.enabled = false;
-        }     
+        playerHealthManager.TakeDamage();
 
     }
 
@@ -46,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-      
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -73,29 +67,59 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y <= destroyThreshold)
         {
             gameOverController.playerDied();
-          
+            Vector3 newPosition = transform.position;
+            newPosition.y = destroyThreshold;
+            transform.position = newPosition;
+
+            // If using Rigidbody2D, you may want to set velocity to zero
+            rb2d.velocity = Vector2.zero;
+
 
 
         }
     }
-   /* IEnumerator ReloadSceneAfterDelay(float delay)
-    {
-        // Set "Death" to true, triggering the death animation
-        animator.SetBool("Death", true);
+    /* IEnumerator ReloadSceneAfterDelay(float delay)
+     {
+         // Set "Death" to true, triggering the death animation
+         animator.SetBool("Death", true);
 
-        // Wait for the specified delay
-        yield return new WaitForSeconds(delay);
+         // Wait for the specified delay
+         yield return new WaitForSeconds(delay);
 
-        // Load the scene after the delay
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    } */
-    private void MoveCharacter(float horizontal, float vertical) // character movement
+         // Load the scene after the delay
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+     } */
+    private bool isMoving = false;
+    private Coroutine loopedAudioCoroutine;
+
+    private void MoveCharacter(float horizontal, float vertical)
     {
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
 
-        if (vertical > 0 && isGrounded && IsShiftPressed )
+        // Check if the player is moving along the x-axis
+        if (horizontal != 0)
+        {
+            if (!isMoving)
+            {
+                // Start the looped audio coroutine
+                loopedAudioCoroutine = StartCoroutine(PlayLoopedAudio());
+                isMoving = true;
+            }
+        }
+        else
+        {
+            // Stop the existing looped audio coroutine when movement stops
+            if (isMoving)
+            {
+                StopCoroutine(loopedAudioCoroutine);
+                isMoving = false;
+            }
+        }
+    
+
+        if (vertical > 0 && isGrounded && IsShiftPressed)
         {
             isGrounded = false;
             Debug.Log(" Player is Jump");
@@ -107,6 +131,21 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
         }
     }
+
+
+    private IEnumerator PlayLoopedAudio()
+    {
+    while (true)
+        {
+        // Play the player movement audio
+             AudioManager.Instance.Play(Audios.PlayerMove);
+
+        // Add a delay between audio repeats
+             yield return new WaitForSeconds(0.5f); // Adjust the delay time as needed
+        }
+    }
+
+
 
     private void PlayMovementAnimations(float horizontal, float vertical)
     {

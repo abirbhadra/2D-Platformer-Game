@@ -7,12 +7,12 @@ public class LobbyController : MonoBehaviour
 
     private void Awake()
     {
-        buttonPlay.onClick.AddListener(ReloadLevel);
+        buttonPlay.onClick.AddListener(PlayLevel);
     }
 
-    public void ReloadLevel()
+    public void PlayLevel()
     {
-
+        AudioManager.Instance.Play(Audios.ButtonClick);
         LevelSelection.SetActive(true);
         
     }

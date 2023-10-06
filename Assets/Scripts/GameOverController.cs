@@ -13,14 +13,17 @@ public class GameOverController : MonoBehaviour
     {
         if (buttonRestart != null)
         {
+           //AudioManager.Instance.Play(Audios.ButtonClick);
             buttonRestart.onClick.AddListener(ReloadLevel);
         }
         if (buttonLobby != null)
         {
+            //AudioManager.Instance.Play(Audios.ButtonClick);
             buttonLobby.onClick.AddListener(LoadLobby);
         }
         if(buttonNextLevel != null)
         {
+            //AudioManager.Instance.Play(Audios.ButtonClick);
             buttonNextLevel.onClick.AddListener(LoadNextLevel);
         }
     }
@@ -37,16 +40,19 @@ public class GameOverController : MonoBehaviour
 
     public void ReloadLevel()
     {
+        AudioManager.Instance.Play(Audios.ButtonClick);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadLobby()
     {
+        AudioManager.Instance.Play(Audios.ButtonClick);
         SceneManager.LoadScene(0);
     }
 
     public void LoadNextLevel()
     {
+        AudioManager.Instance.Play(Audios.ButtonClick);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
         
