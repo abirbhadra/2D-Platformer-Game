@@ -137,6 +137,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 317875466}
     - target: {fileID: 1895264627, guid: dceccdb09e6158e4cadc01a2f63da82d, type: 3}
+      propertyPath: gameOverController
+      value: 
+      objectReference: {fileID: 317875466}
+    - target: {fileID: 1895264627, guid: dceccdb09e6158e4cadc01a2f63da82d, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 2074262907}

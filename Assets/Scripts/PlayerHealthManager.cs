@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerHealthManager : MonoBehaviour
 
 {
+    public ParticleController particleController;
     public GameOverController gameOverController;
     public static int health = 3;
 
@@ -27,6 +28,7 @@ public class PlayerHealthManager : MonoBehaviour
         if (PlayerHealthManager.health <= 0)
         {
             Debug.Log("Player got killed");
+            particleController.PlayerWinEffect();
 
             gameOverController.playerDied();
 

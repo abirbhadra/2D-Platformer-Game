@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour
 {
+   
     public Button buttonRestart;
     public Button buttonLobby;
     public Button buttonNextLevel;
@@ -30,11 +31,13 @@ public class GameOverController : MonoBehaviour
     public void playerDied()
     {
         gameObject.SetActive(true);
+        
     }
 
     public void playerHitTeleporter()
     {
         gameObject.SetActive(true);
+       
     }
 
 

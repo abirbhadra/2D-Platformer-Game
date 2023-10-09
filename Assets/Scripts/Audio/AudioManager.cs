@@ -78,6 +78,8 @@ public class AudioType
 
 public enum Audios
 {
+    LevelStart,
+    LevelOver,
     Music,
     ButtonClick,
     PlayerMove,

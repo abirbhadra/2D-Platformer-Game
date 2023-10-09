@@ -22,6 +22,7 @@ public class SwitchLevels : MonoBehaviour
 
             levelOverController.playerHitTeleporter();
 
+            AudioManager.Instance.Play(Audios.LevelOver);
 
         }
     }

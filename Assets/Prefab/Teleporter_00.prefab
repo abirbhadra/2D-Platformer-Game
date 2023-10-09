@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfce5b00e82ea74095a03417eaa5229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isChecked: 0
+  isChecked: 1
   levelOverController: {fileID: 0}

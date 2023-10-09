@@ -437,12 +437,16 @@ MonoBehaviour:
   audioEffect: {fileID: 678222912}
   audioMusic: {fileID: 447183454}
   Audios:
-  - audioType: 1
+  - audioType: 3
     audioClip: {fileID: 8300000, guid: df6d1af64fdebb04d80a54b27b720509, type: 3}
-  - audioType: 0
-    audioClip: {fileID: 8300000, guid: 0651b56880a11ef45909b779443691aa, type: 3}
   - audioType: 2
+    audioClip: {fileID: 8300000, guid: 0651b56880a11ef45909b779443691aa, type: 3}
+  - audioType: 4
     audioClip: {fileID: 8300000, guid: 88cf4c38c64a7b84f88a54036e698825, type: 3}
+  - audioType: 0
+    audioClip: {fileID: 8300000, guid: 68c65aec95671b549be3b900cc305b1e, type: 3}
+  - audioType: 1
+    audioClip: {fileID: 8300000, guid: 68c65aec95671b549be3b900cc305b1e, type: 3}
 --- !u!4 &302908823
 Transform:
   m_ObjectHideFlags: 0

@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded = false;
     [SerializeField] public bool IsShiftPressed;
     [SerializeField] public float destroyThreshold = -8f;
-    
 
+    public ParticleController particleController;
     public GameOverController gameOverController;
     public PlayerHealthManager playerHealthManager;
     public void KillPlayer()
     {
         playerHealthManager.TakeDamage();
+       
 
     }
 
@@ -40,7 +41,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        
+        AudioManager.Instance.Play(Audios.LevelStart);
+
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
         IsShiftPressed = Input.GetKey(KeyCode.LeftShift);
 
         PlayerDeath();
+        
     }
 
     private void PlayerDeath()
@@ -74,21 +78,11 @@ public class PlayerController : MonoBehaviour
             // If using Rigidbody2D, you may want to set velocity to zero
             rb2d.velocity = Vector2.zero;
 
-
+           
 
         }
     }
-    /* IEnumerator ReloadSceneAfterDelay(float delay)
-     {
-         // Set "Death" to true, triggering the death animation
-         animator.SetBool("Death", true);
-
-         // Wait for the specified delay
-         yield return new WaitForSeconds(delay);
-
-         // Load the scene after the delay
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-     } */
+    
     private bool isMoving = false;
     private Coroutine loopedAudioCoroutine;
 
