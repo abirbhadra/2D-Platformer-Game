@@ -7,7 +7,7 @@ public class PlayerHealthManager : MonoBehaviour
 {
     public ParticleController particleController;
     public GameOverController gameOverController;
-    public static int health = 3;
+    public static int health;
 
     public Image[] hearts;
 
@@ -17,6 +17,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Start()
     {
+        health = 3;
         foreach (Image img in hearts)
         {
             img.sprite = fullHeart;

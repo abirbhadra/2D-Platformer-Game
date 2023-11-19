@@ -12,7 +12,7 @@ public class ParticleController : MonoBehaviour
 
     public void PlayerWinEffect()
     {
-        gameObject.SetActive(true);
+        particleSystem.gameObject.SetActive(true);
         particleSystem.Play();
     }
 
