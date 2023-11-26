@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 4434469173272312909, guid: dceccdb09e6158e4cadc01a2f63da82d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.1
+      value: -3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4434469173272312909, guid: dceccdb09e6158e4cadc01a2f63da82d,
         type: 3}
@@ -2237,6 +2237,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelOver
       objectReference: {fileID: 0}
+    - target: {fileID: 6026893350564787269, guid: 37f217aa857520749b215f2c6ad17096,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6026893350564787270, guid: 37f217aa857520749b215f2c6ad17096,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2460,6 +2465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140857073480908367, guid: 531f643fb70b53e45903af9c192d8dd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531f643fb70b53e45903af9c192d8dd9, type: 3}
